@@ -1,7 +1,6 @@
 // $fontSize: 10px;
-$titleFont: 'Staatliches', cursive;
-$bodyFont: 'Asap Condensed', cursive;
-$bodyFont2: 'ZCOOL QingKe HuangYou', cursive; 
+$titleFont: 'Luckiest Guy', cursive;
+$bodyFont: 'Indie Flower', cursive;
 
 body{
     font-family: $bodyFont;
@@ -17,6 +16,13 @@ a{
 }
 
 h1{
+    @include fontSize(clamp(5rem, 9vw, 8rem));
+    font-family: $titleFont;
+    line-height: clamp(6.5rem, 10vw, 10rem);
+    margin: 3% 0;
+}
+
+h2{
     @include fontSize(clamp(5rem, 9vw, 8rem));
     font-family: $titleFont;
     line-height: clamp(6.5rem, 10vw, 10rem);
