@@ -314,6 +314,19 @@ button {
   cursor: pointer;
 }
 
+.cardDeck {
+  background-image: url(../assets/treeCardBack.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #076533;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 2px #076533;
+          box-shadow: 2px 2px 2px #076533;
+  height: 120px;
+  width: 90px;
+  margin: 1%;
+}
+
 footer {
   width: 100%;
   background: #7e3f02;
