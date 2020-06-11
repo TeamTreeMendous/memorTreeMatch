@@ -1,0 +1,10 @@
+@import "sass/cssstart";
+@import "sass/mixins";
+@import "sass/typography";
+@import "sass/devicons";
+
+$green: #1c784a;
+
+body {
+    background: linear-gradient( to right, orangered, orange, gold);
+}
