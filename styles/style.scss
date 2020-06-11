@@ -3,6 +3,7 @@
 @import "sass/typography";
 
 $green: #12e072;
+$darkgreen: #076533;
 $blue: #d7F0Fd;
 $brown: #7e3f02;
 
@@ -21,6 +22,19 @@ header, .game, .treeFormation{
 
 button{
     cursor: pointer;
+}
+
+// * * * * CARDS
+.cardDeck{
+    background-image: url(../assets/treeCardBack.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid $darkgreen;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px $darkgreen;
+    height: 120px;
+    width: 90px;
+    margin: 1%;
 }
 
 footer{
