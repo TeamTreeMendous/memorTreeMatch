@@ -48,6 +48,8 @@ header{
 main{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
+    justify-items: center;
+    align-items: center;
     gap: 2vw;
     height: 100vh;
 }
@@ -59,26 +61,49 @@ main{
     border: 1px solid $darkgreen;
     border-radius: 5px;
     box-shadow: 2px 2px 2px $darkgreen;
-    width: calc((min(100vw, 1200px) - 20vw) / 8);
-    height: calc((min(100vw, 1200px) - 20vw) / 6);
+    width: calc((100vh - 10vw) / 4);
+    height: calc((100vh - 10vw) / 3);
+    // width: calc((min(100vw, 1200px) - 20vw) / 8);
+    // height: calc((min(100vw, 1200px) - 20vw) / 6);
 }
 
-@media (max-aspect-ratio: 9/8) {
+@media (max-aspect-ratio: 2/1) {
+    .card {
+        width: calc((min(100vw, 1200px) - 20vw) / 8);
+        height: calc((min(100vw, 1200px) - 20vw) / 6);
+    }
+}
+
+@media (max-aspect-ratio: 13/8) {
     main {
         grid-template-columns: repeat(6, 1fr);
     }
     
+    .card {
+        width: calc((100vh - 12vw) * 3 / 16);
+        height: calc((100vh - 12vw) / 4);
+    }
+}
+
+@media (max-aspect-ratio: 9/8) {
     .card {
         width: calc((min(100vw, 1200px) - 16vw) / 6);
         height: calc((min(100vw, 1200px) - 16vw) / 4.5);
     }
 }
 
-@media (max-aspect-ratio: 33/64) {
+@media (max-aspect-ratio: 13/16) {
     main {
         grid-template-columns: repeat(4, 1fr);
     }
     
+    .card {
+        width: calc((100vh - 16vw) / 8);
+        height: calc((100vh - 16vw) / 6);
+    }
+}
+
+@media (max-aspect-ratio: 1/2) {
     .card {
         width: calc((min(100vw, 1200px) - 12vw) / 4);
         height: calc((min(100vw, 1200px) - 12vw) / 3);
