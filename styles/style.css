@@ -352,8 +352,9 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 2vw;
+  gap: calc(min(2vw, 24px));
   height: 100vh;
+  padding: calc(min(3vw, 36px));
 }
 
 .card {
@@ -363,8 +364,8 @@ main {
   border-radius: 5px;
   -webkit-box-shadow: 2px 2px 2px #076533;
           box-shadow: 2px 2px 2px #076533;
-  width: calc((100vh - 10vw) / 4);
-  height: calc((100vh - 10vw) / 3);
+  width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
+  height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
 }
 
 @media (max-aspect-ratio: 2 / 1) {

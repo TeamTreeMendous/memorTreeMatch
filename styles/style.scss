@@ -50,8 +50,9 @@ main{
     grid-template-columns: repeat(8, 1fr);
     justify-items: center;
     align-items: center;
-    gap: 2vw;
+    gap: calc(min(2vw, 24px));
     height: 100vh;
+    padding: calc(min(3vw, 36px));
 }
 
 // * * * * CARDS
@@ -61,11 +62,32 @@ main{
     border: 1px solid $darkgreen;
     border-radius: 5px;
     box-shadow: 2px 2px 2px $darkgreen;
-    width: calc((100vh - 10vw) / 4);
-    height: calc((100vh - 10vw) / 3);
-    // width: calc((min(100vw, 1200px) - 20vw) / 8);
-    // height: calc((min(100vw, 1200px) - 20vw) / 6);
+    width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
+    height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
 }
+
+// @media (min-width: 1200px) and (max-aspect-ratio: 25/12) {
+//     width: calc((min(100vw, 1200px) - 20vw) / 8);
+//     height: calc((min(100vw, 1200px) - 20vw) / 6);
+// }
+
+// @media (min-aspect-ratio: 2/1) and (max-width: 1200px) {
+//     .card {
+//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
+//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
+//         width: calc((100vh - 10vw) / 4);
+//         height: calc((100vh - 10vw) / 3);
+//     }
+// }
+
+// @media (min-width: 1200px) and (min-aspect-ratio: 25/12) {
+//     .card {
+//         width: calc((100vh - 10vw) / 4);
+//         height: calc((100vh - 10vw) / 3);
+//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
+//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
+//     }
+// }
 
 @media (max-aspect-ratio: 2/1) {
     .card {
