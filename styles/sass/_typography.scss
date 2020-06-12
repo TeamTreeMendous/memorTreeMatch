@@ -7,24 +7,32 @@ body{
     @include fontSize(clamp(2rem, 3vw, 3rem));
 }
 
+button{
+    font-family: $bodyFont;
+}
+
 a{
     text-shadow: 2px 2px orange;
     
-    &:hover, :active{
-    text-decoration: underline;
+    &:hover, &:active, &:focus{
+        text-decoration: underline;
     }
+}
+
+p{
+    margin: 0;
 }
 
 h1{
     @include fontSize(clamp(5rem, 9vw, 8rem));
     font-family: $titleFont;
     line-height: clamp(6.5rem, 10vw, 10rem);
-    margin: 3% 0;
+    margin: 0;
 }
 
 h2{
     @include fontSize(clamp(2rem, 4vw, 4rem));
     font-family: $titleFont;
     line-height: clamp(2.5rem, 4.5vw, 4.5rem);
-    margin: 3% 0;
+    margin: 0;
 }

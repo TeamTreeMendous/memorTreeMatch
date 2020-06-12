@@ -105,7 +105,7 @@ memorTreeMatch.cardDeck = [
 memorTreeMatch.begin = function () { 
     $('.start').click(function () {
         $('html,body').animate({
-            scrollTop: $(".game").offset().top
+            scrollTop: $("main").offset().top
         },
             'slow');
     });
@@ -113,7 +113,7 @@ memorTreeMatch.begin = function () {
     // * * * * WHEN INFO BUTTON IS CLICKED IT GOES TO THE TREE INFO PAGE
     $('.info').click(function () {
         $('html,body').animate({
-            scrollTop: $(".treeformation").offset().top
+            scrollTop: $(".info").offset().top
         },
             'slow');
     });

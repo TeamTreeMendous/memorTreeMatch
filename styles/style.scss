@@ -7,38 +7,99 @@ $darkgreen: #076533;
 $blue: #d7F0Fd;
 $brown: #7e3f02;
 
-body {
-    background: linear-gradient( to bottom, $blue, $green);
-    height: 100vh;
-    width: 100%;
+button{
+    background-color: $darkgreen;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+
+    &:hover, &:active, &:focus{
+        border-color: white;
+    }
+}
+
+html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+}
+
+body {
+    > * {
+        scroll-snap-align: start;
+    }
 }
 
 .wrapper{
     max-width: 1200px;
-    padding: 2%;
+    margin: 0 auto;
 }
 
-header, section.game, section.treeFormation{
+header, main, .info{
+    background: linear-gradient( to bottom, $blue, $green);
+    padding: 3vw;
+}
+
+header{
     height: 100vh;
-    width: 100%;
 }
 
-button{
-    cursor: pointer;
+main{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2vw;
+    height: 100vh;
 }
 
 // * * * * CARDS
-.cardDeck{
-    background-image: url(../assets/treeCardBack.jpg);
+.card{
+    background: url(../assets/treeCardBack.jpg) no-repeat;
     background-size: cover;
-    background-repeat: no-repeat;
     border: 1px solid $darkgreen;
     border-radius: 5px;
     box-shadow: 2px 2px 2px $darkgreen;
-    height: 120px;
-    width: 90px;
-    margin: 1%;
+    width: calc((min(100vw, 1200px) - 20vw) / 8);
+    height: calc((min(100vw, 1200px) - 20vw) / 6);
+}
+
+@media (max-aspect-ratio: 9/8) {
+    main {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .card {
+        width: calc((min(100vw, 1200px) - 16vw) / 6);
+        height: calc((min(100vw, 1200px) - 16vw) / 4.5);
+    }
+}
+
+@media (max-aspect-ratio: 33/64) {
+    main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .card {
+        width: calc((min(100vw, 1200px) - 12vw) / 4);
+        height: calc((min(100vw, 1200px) - 12vw) / 3);
+    }
+}
+
+.info{
+    min-height: calc(100vh - 60px);
+
+    h2{
+        display: inline-block;
+    }
+
+    select{
+        background: url("../assets/arrow.png") right top no-repeat;
+        background-size: contain;
+        border: none;
+        border-bottom: 2px solid $darkgreen;
+        padding-right: 30px;
+        appearance: none;
+    }
 }
 
 // * * * * TREEFORMATION
@@ -55,9 +116,9 @@ article{
 
 // * * * * FOOTER
 footer{
-    width: 100%;
-    background: $brown;
-    color: #FFF;
+    background-color: $brown;
+    color: white;
     text-align: center;
-    padding: 1px;
+    padding: 15px;
+    height: 60px;
 }

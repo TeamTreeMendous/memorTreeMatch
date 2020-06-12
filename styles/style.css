@@ -270,66 +270,138 @@ a {
 body {
   font-family: "Indie Flower", cursive;
   font-size: clamp(2rem, 3vw, 3rem);
-  line-height: clamp(2rem, 3vw, 3rem)2px;
+  line-height: clamp(2rem, 3vw, 3rem) + 2px;
+}
+
+button {
+  font-family: "Indie Flower", cursive;
 }
 
 a {
   text-shadow: 2px 2px orange;
 }
 
-a:hover, a :active {
+a:hover, a:active, a:focus {
   text-decoration: underline;
+}
+
+p {
+  margin: 0;
 }
 
 h1 {
   font-size: clamp(5rem, 9vw, 8rem);
-  line-height: clamp(5rem, 9vw, 8rem)2px;
+  line-height: clamp(5rem, 9vw, 8rem) + 2px;
   font-family: "Luckiest Guy", cursive;
   line-height: clamp(6.5rem, 10vw, 10rem);
-  margin: 3% 0;
+  margin: 0;
 }
 
 h2 {
   font-size: clamp(2rem, 4vw, 4rem);
-  line-height: clamp(2rem, 4vw, 4rem)2px;
+  line-height: clamp(2rem, 4vw, 4rem) + 2px;
   font-family: "Luckiest Guy", cursive;
   line-height: clamp(2.5rem, 4.5vw, 4.5rem);
-  margin: 3% 0;
+  margin: 0;
 }
 
-body {
-  background: -webkit-gradient(linear, left top, left bottom, from(#d7F0Fd), to(#12e072));
-  background: linear-gradient(to bottom, #d7F0Fd, #12e072);
-  height: 100vh;
-  width: 100%;
+button {
+  background-color: #076533;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+button:hover, button:active, button:focus {
+  border-color: white;
+}
+
+html {
   scroll-behavior: smooth;
+  -ms-scroll-snap-type: y proximity;
+      scroll-snap-type: y proximity;
+}
+
+body > * {
+  scroll-snap-align: start;
 }
 
 .wrapper {
   max-width: 1200px;
-  padding: 2%;
+  margin: 0 auto;
 }
 
-header, section.game, section.treeFormation {
+header, main, .info {
+  background: -webkit-gradient(linear, left top, left bottom, from(#d7F0Fd), to(#12e072));
+  background: linear-gradient(to bottom, #d7F0Fd, #12e072);
+  padding: 3vw;
+}
+
+header {
   height: 100vh;
-  width: 100%;
 }
 
-button {
-  cursor: pointer;
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[8];
+      grid-template-columns: repeat(8, 1fr);
+  gap: 2vw;
+  height: 100vh;
 }
 
-.cardDeck {
-  background-image: url(../assets/treeCardBack.jpg);
+.card {
+  background: url(../assets/treeCardBack.jpg) no-repeat;
   background-size: cover;
-  background-repeat: no-repeat;
   border: 1px solid #076533;
   border-radius: 5px;
   -webkit-box-shadow: 2px 2px 2px #076533;
           box-shadow: 2px 2px 2px #076533;
-  height: 120px;
-  width: 90px;
-  margin: 1%;
+  width: calc((min(100vw, 1200px) - 20vw) / 8);
+  height: calc((min(100vw, 1200px) - 20vw) / 6);
+}
+
+@media (max-aspect-ratio: 9 / 8) {
+  main {
+    -ms-grid-columns: (1fr)[6];
+        grid-template-columns: repeat(6, 1fr);
+  }
+  .card {
+    width: calc((min(100vw, 1200px) - 16vw) / 6);
+    height: calc((min(100vw, 1200px) - 16vw) / 4.5);
+  }
+}
+
+@media (max-aspect-ratio: 33 / 64) {
+  main {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+  }
+  .card {
+    width: calc((min(100vw, 1200px) - 12vw) / 4);
+    height: calc((min(100vw, 1200px) - 12vw) / 3);
+  }
+}
+
+.info {
+  min-height: calc(100vh - 60px);
+}
+
+.info h2 {
+  display: inline-block;
+}
+
+.info select {
+  background: url("../assets/arrow.png") right top no-repeat;
+  background-size: contain;
+  border: none;
+  border-bottom: 2px solid #076533;
+  padding-right: 30px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 section.treeformation .wrapper {
@@ -350,9 +422,9 @@ article {
 }
 
 footer {
-  width: 100%;
-  background: #7e3f02;
-  color: #FFF;
+  background-color: #7e3f02;
+  color: white;
   text-align: center;
-  padding: 1px;
+  padding: 15px;
+  height: 60px;
 }
