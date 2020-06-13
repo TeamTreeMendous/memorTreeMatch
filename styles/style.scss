@@ -7,40 +7,165 @@ $darkgreen: #076533;
 $blue: #d7F0Fd;
 $brown: #7e3f02;
 
-body {
-    background: linear-gradient( to bottom, $blue, $green);
-    height: 100vh;
-    width: 100%;
-    scroll-behavior: smooth;
-    // overflow: hidden;
-}
-
-header, .game, .treeFormation{
-    height: 100vh;
-    width: 100%;
-}
-
 button{
+    background-color: $darkgreen;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 5px 20px;
     cursor: pointer;
+
+    &:hover, &:active, &:focus{
+        border-color: white;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+}
+
+body {
+    > * {
+        scroll-snap-align: start;
+    }
+}
+
+.wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header, main, .info{
+    background: linear-gradient( to bottom, $blue, $green);
+    padding: 3vw;
+}
+
+header{
+    height: 100vh;
+}
+
+main{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: calc(min(2vw, 24px));
+    height: 100vh;
+    padding: calc(min(3vw, 36px));
 }
 
 // * * * * CARDS
-.cardDeck{
-    background-image: url(../assets/treeCardBack.jpg);
+.card{
+    background: url(../assets/treeCardBack.jpg) no-repeat;
     background-size: cover;
-    background-repeat: no-repeat;
     border: 1px solid $darkgreen;
     border-radius: 5px;
     box-shadow: 2px 2px 2px $darkgreen;
-    height: 120px;
-    width: 90px;
+    width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
+    height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
+}
+
+// @media (min-width: 1200px) and (max-aspect-ratio: 25/12) {
+//     width: calc((min(100vw, 1200px) - 20vw) / 8);
+//     height: calc((min(100vw, 1200px) - 20vw) / 6);
+// }
+
+// @media (min-aspect-ratio: 2/1) and (max-width: 1200px) {
+//     .card {
+//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
+//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
+//         width: calc((100vh - 10vw) / 4);
+//         height: calc((100vh - 10vw) / 3);
+//     }
+// }
+
+// @media (min-width: 1200px) and (min-aspect-ratio: 25/12) {
+//     .card {
+//         width: calc((100vh - 10vw) / 4);
+//         height: calc((100vh - 10vw) / 3);
+//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
+//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
+//     }
+// }
+
+@media (max-aspect-ratio: 2/1) {
+    .card {
+        width: calc((min(100vw, 1200px) - 20vw) / 8);
+        height: calc((min(100vw, 1200px) - 20vw) / 6);
+    }
+}
+
+@media (max-aspect-ratio: 13/8) {
+    main {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .card {
+        width: calc((100vh - 12vw) * 3 / 16);
+        height: calc((100vh - 12vw) / 4);
+    }
+}
+
+@media (max-aspect-ratio: 9/8) {
+    .card {
+        width: calc((min(100vw, 1200px) - 16vw) / 6);
+        height: calc((min(100vw, 1200px) - 16vw) / 4.5);
+    }
+}
+
+@media (max-aspect-ratio: 13/16) {
+    main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .card {
+        width: calc((100vh - 16vw) / 8);
+        height: calc((100vh - 16vw) / 6);
+    }
+}
+
+@media (max-aspect-ratio: 1/2) {
+    .card {
+        width: calc((min(100vw, 1200px) - 12vw) / 4);
+        height: calc((min(100vw, 1200px) - 12vw) / 3);
+    }
+}
+
+.info{
+    min-height: calc(100vh - 60px);
+
+    h2{
+        display: inline-block;
+    }
+
+    select{
+        background: url("../assets/arrow.png") right top no-repeat;
+        background-size: contain;
+        border: none;
+        border-bottom: 2px solid $darkgreen;
+        padding-right: 30px;
+        appearance: none;
+    }
+}
+
+// * * * * TREEFORMATION
+section.treeformation .wrapper{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+article{
+    width: calc(50% - 2%);
     margin: 1%;
 }
 
+// * * * * FOOTER
 footer{
-    width: 100%;
-    background: $brown;
-    color: #FFF;
+    background-color: $brown;
+    color: white;
     text-align: center;
-    padding: 1px;
+    padding: 15px;
+    height: 60px;
 }
