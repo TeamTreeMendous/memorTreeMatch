@@ -1,0 +1,97 @@
+// * * * * LANDING PAGE
+@media (max-width: 850px){
+    h1{
+        text-align: center;
+    }
+
+    .intro{
+        width: 100%;
+    }
+
+    .intro p{
+        background: $fadedBlue;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        line-height: 30px;
+    }
+
+    .headerImage img{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 650px){
+    
+
+    .headerImage img{
+        width: 100%;
+    }
+}
+
+// * * * * CARD GAME
+// @media (min-width: 1200px) and (max-aspect-ratio: 25/12) {
+//     width: calc((min(100vw, 1200px) - 20vw) / 8);
+//     height: calc((min(100vw, 1200px) - 20vw) / 6);
+// }
+
+// @media (min-aspect-ratio: 2/1) and (max-width: 1200px) {
+//     .card {
+//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
+//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
+//         width: calc((100vh - 10vw) / 4);
+//         height: calc((100vh - 10vw) / 3);
+//     }
+// }
+
+// @media (min-width: 1200px) and (min-aspect-ratio: 25/12) {
+//     .card {
+//         width: calc((100vh - 10vw) / 4);
+//         height: calc((100vh - 10vw) / 3);
+//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
+//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
+//     }
+// }
+
+@media (max-aspect-ratio: 2/1) {
+    .card {
+        width: calc((min(100vw, 1200px) - 20vw) / 8);
+        height: calc((min(100vw, 1200px) - 20vw) / 6);
+    }
+}
+
+@media (max-aspect-ratio: 13/8) {
+    main {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .card {
+        width: calc((100vh - 12vw) * 3 / 16);
+        height: calc((100vh - 12vw) / 4);
+    }
+}
+
+@media (max-aspect-ratio: 9/8) {
+    .card {
+        width: calc((min(100vw, 1200px) - 16vw) / 6);
+        height: calc((min(100vw, 1200px) - 16vw) / 4.5);
+    }
+}
+
+@media (max-aspect-ratio: 13/16) {
+    main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .card {
+        width: calc((100vh - 16vw) / 8);
+        height: calc((100vh - 16vw) / 6);
+    }
+}
+
+@media (max-aspect-ratio: 1/2) {
+    .card {
+        width: calc((min(100vw, 1200px) - 12vw) / 4);
+        height: calc((min(100vw, 1200px) - 12vw) / 3);
+    }
+}

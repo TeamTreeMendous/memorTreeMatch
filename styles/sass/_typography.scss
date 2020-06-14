@@ -1,4 +1,3 @@
-// $fontSize: 10px;
 $titleFont: 'Luckiest Guy', cursive;
 $bodyFont: 'Indie Flower', cursive;
 
@@ -24,7 +23,7 @@ p, h1, h2 {
 }
 
 h1{
-    @include fontSize(clamp(5rem, 9vw, 8rem));
+    @include fontSize(clamp(6rem, 9vw, 8rem));
     font-family: $titleFont;
     line-height: clamp(6.5rem, 10vw, 10rem);
 }
