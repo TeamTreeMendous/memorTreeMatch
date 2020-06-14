@@ -290,8 +290,8 @@ p, h1, h2 {
 }
 
 h1 {
-  font-size: clamp(5rem, 9vw, 8rem);
-  line-height: clamp(5rem, 9vw, 8rem) + 2px;
+  font-size: clamp(6rem, 9vw, 8rem);
+  line-height: clamp(6rem, 9vw, 8rem) + 2px;
   font-family: "Luckiest Guy", cursive;
   line-height: clamp(6.5rem, 10vw, 10rem);
 }
@@ -339,6 +339,19 @@ header, main, .info {
 
 header {
   height: 100vh;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 
 main {
@@ -353,6 +366,61 @@ main {
   gap: calc(min(2vw, 24px));
   height: 100vh;
   padding: calc(min(3vw, 36px));
+}
+
+h1, .introBlock {
+  z-index: 10;
+  position: relative;
+  width: 100%;
+}
+
+h1 {
+  text-align: right;
+}
+
+h1 span {
+  text-shadow: 1px 1px #d7F0Fd, -1px -1px rgba(18, 224, 114, 0.5);
+  color: #076533;
+}
+
+.introBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.intro {
+  width: 50%;
+  text-align: center;
+}
+
+.intro p {
+  width: 100%;
+  padding: 2% 0;
+}
+
+.intro p span {
+  padding-bottom: 2%;
+  display: block;
+}
+
+button.start {
+  width: 100%;
+  padding: 2%;
+  margin: 5% 0;
+}
+
+.headerImage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.headerImage img {
+  width: 50%;
 }
 
 .card {
@@ -407,49 +475,6 @@ main {
 .card:hover .cardFront:active, .card:hover .cardFront :focus {
   -webkit-transform: rotateY(0);
           transform: rotateY(0);
-}
-
-@media (max-aspect-ratio: 2 / 1) {
-  .card {
-    width: calc((min(100vw, 1200px) - 20vw) / 8);
-    height: calc((min(100vw, 1200px) - 20vw) / 6);
-  }
-}
-
-@media (max-aspect-ratio: 13 / 8) {
-  main {
-    -ms-grid-columns: (1fr)[6];
-        grid-template-columns: repeat(6, 1fr);
-  }
-  .card {
-    width: calc((100vh - 12vw) * 3 / 16);
-    height: calc((100vh - 12vw) / 4);
-  }
-}
-
-@media (max-aspect-ratio: 9 / 8) {
-  .card {
-    width: calc((min(100vw, 1200px) - 16vw) / 6);
-    height: calc((min(100vw, 1200px) - 16vw) / 4.5);
-  }
-}
-
-@media (max-aspect-ratio: 13 / 16) {
-  main {
-    -ms-grid-columns: (1fr)[4];
-        grid-template-columns: repeat(4, 1fr);
-  }
-  .card {
-    width: calc((100vh - 16vw) / 8);
-    height: calc((100vh - 16vw) / 6);
-  }
-}
-
-@media (max-aspect-ratio: 1 / 2) {
-  .card {
-    width: calc((min(100vw, 1200px) - 12vw) / 4);
-    height: calc((min(100vw, 1200px) - 12vw) / 3);
-  }
 }
 
 .info {
@@ -534,4 +559,72 @@ footer {
   text-align: center;
   padding: 15px;
   height: 60px;
+}
+
+@media (max-width: 850px) {
+  h1 {
+    text-align: center;
+  }
+  .intro {
+    width: 100%;
+  }
+  .intro p {
+    background: rgba(215, 240, 253, 0.6);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    line-height: 30px;
+  }
+  .headerImage img {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .headerImage img {
+    width: 100%;
+  }
+}
+
+@media (max-aspect-ratio: 2 / 1) {
+  .card {
+    width: calc((min(100vw, 1200px) - 20vw) / 8);
+    height: calc((min(100vw, 1200px) - 20vw) / 6);
+  }
+}
+
+@media (max-aspect-ratio: 13 / 8) {
+  main {
+    -ms-grid-columns: (1fr)[6];
+        grid-template-columns: repeat(6, 1fr);
+  }
+  .card {
+    width: calc((100vh - 12vw) * 3 / 16);
+    height: calc((100vh - 12vw) / 4);
+  }
+}
+
+@media (max-aspect-ratio: 9 / 8) {
+  .card {
+    width: calc((min(100vw, 1200px) - 16vw) / 6);
+    height: calc((min(100vw, 1200px) - 16vw) / 4.5);
+  }
+}
+
+@media (max-aspect-ratio: 13 / 16) {
+  main {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+  }
+  .card {
+    width: calc((100vh - 16vw) / 8);
+    height: calc((100vh - 16vw) / 6);
+  }
+}
+
+@media (max-aspect-ratio: 1 / 2) {
+  .card {
+    width: calc((min(100vw, 1200px) - 12vw) / 4);
+    height: calc((min(100vw, 1200px) - 12vw) / 3);
+  }
 }
