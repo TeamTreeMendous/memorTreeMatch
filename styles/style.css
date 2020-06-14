@@ -356,14 +356,57 @@ main {
 }
 
 .card {
-  background: url(../assets/treeCardBack.jpg) no-repeat;
-  background-size: cover;
+  width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
+  height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
+  position: relative;
+}
+
+.cardBack, .cardFront {
   border: 1px solid #076533;
   border-radius: 5px;
   -webkit-box-shadow: 2px 2px 2px #076533;
           box-shadow: 2px 2px 2px #076533;
-  width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
-  height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.cardBack {
+  background: url(../assets/treeCardBack.jpg) no-repeat;
+  background-size: cover;
+}
+
+.cardFront {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background: url(../assets/paperBirchBark.jpg) no-repeat;
+  background-size: cover;
+}
+
+.card:hover .cardBack {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.card:hover .cardBack:active, .card:hover .cardBack :focus {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.card:hover .cardFront {
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
+}
+
+.card:hover .cardFront:active, .card:hover .cardFront :focus {
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
 }
 
 @media (max-aspect-ratio: 2 / 1) {
@@ -440,9 +483,49 @@ section.treeformation .wrapper {
           flex-flow: row wrap;
 }
 
-article {
-  width: calc(50% - 2%);
+article.treeformationBlock {
+  width: 100%;
   margin: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.leftSide {
+  width: calc(30% - 2%);
+  margin: 1%;
+}
+
+.rightSide {
+  width: calc(70% - 2%);
+  margin: 1%;
+}
+
+.leftSide figure {
+  width: 100%;
+  padding: 2%;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.leftSide figcaption {
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+span.photoAttribution {
+  display: block;
+  font-weight: normal;
 }
 
 footer {

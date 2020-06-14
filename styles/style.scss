@@ -6,6 +6,7 @@ $green: #12e072;
 $darkgreen: #076533;
 $blue: #d7F0Fd;
 $brown: #7e3f02;
+// * * * * WE NEED TO RENAME THE COLOURS AS PRIMARY SECONDARY AND ACCENT ACCORDING TO MY REVIEW FOR PROJECT 3 LOL
 
 button{
     background-color: $darkgreen;
@@ -57,14 +58,51 @@ main{
 
 // * * * * CARDS
 .card{
-    background: url(../assets/treeCardBack.jpg) no-repeat;
-    background-size: cover;
+    width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
+    height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
+    position: relative;
+}
+
+.cardBack, .cardFront{
     border: 1px solid $darkgreen;
     border-radius: 5px;
     box-shadow: 2px 2px 2px $darkgreen;
-    width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
-    height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transition: 1s;
 }
+
+.cardBack{
+    background: url(../assets/treeCardBack.jpg) no-repeat;
+    background-size: cover;
+}
+
+.cardFront{
+    transform: rotateY(180deg);
+    background: url(../assets/paperBirchBark.jpg) no-repeat;
+    background-size: cover;
+    // * * * * ^^ ADD FRONT IMAGE WITH JS ^^
+}
+
+.card:hover .cardBack{
+    transform: rotateY(-180deg);
+
+    &:active, :focus{
+       transform: rotateY(-180deg); 
+    }
+  }
+
+  .card:hover .cardFront{
+    transform: rotateY(0);
+
+    &:active, :focus{
+      transform: rotateY(0);  
+    }
+  }
 
 // @media (min-width: 1200px) and (max-aspect-ratio: 25/12) {
 //     width: calc((min(100vw, 1200px) - 20vw) / 8);
@@ -156,9 +194,41 @@ section.treeformation .wrapper{
     flex-flow: row wrap;
 }
 
-article{
-    width: calc(50% - 2%);
+article.treeformationBlock{
+    width: 100%;
     margin: 1%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.leftSide{
+    width: calc(30% - 2%);
+    margin: 1%;
+}
+
+.rightSide{
+    width: calc(70% - 2%);
+    margin: 1%;
+}
+
+.leftSide figure{
+    width: 100%;
+    padding: 2%;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.leftSide figcaption{
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+span.photoAttribution{
+    display: block;
+    font-weight: normal;
 }
 
 // * * * * FOOTER
