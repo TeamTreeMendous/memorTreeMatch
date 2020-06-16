@@ -190,10 +190,6 @@ h2.complete span{
 }
 
 .treeformationBlock{
-    // width: 100%;
-    // margin: 1%;
-    // display: flex;
-    // justify-content: space-around;
     display: grid;
     grid-template-columns: 40% 60%;
     gap: calc(min(2vw, 24px));
@@ -204,20 +200,8 @@ h2.complete span{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: calc(min(2vw, 24px));
-    // width: calc(30% - 2%);
-    // margin: 1%;
-
-    figure{
-        // width: 100%;
-        // height: auto;
-        // padding: 2%;
-        // margin: 0;
-        // display: flex;
-        // flex-flow: row wrap;
-    }
 
     figcaption{
-        // width: 100%;
         font-size: 2rem;
         text-align: center;
         font-weight: bold;
@@ -231,9 +215,6 @@ h2.complete span{
 }
 
 .rightSide{
-    // width: calc(70% - 2%);
-    // margin: 1%;
-
     h3{
         display: inline-block;
         margin-bottom: 15px;
