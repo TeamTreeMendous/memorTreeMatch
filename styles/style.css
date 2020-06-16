@@ -465,6 +465,7 @@ main {
 .cardFront img {
   width: 100%;
   display: block;
+  position: relative;
   margin: 0 auto;
   height: 100%;
   border-radius: 5px;
