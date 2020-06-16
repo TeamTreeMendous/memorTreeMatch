@@ -203,8 +203,7 @@ memorTreeMatch.getPlant = function (id) {
     });
 };
 
-// * * * * DISPLAY PLANT IMAGES
-memorTreeMatch.displayImages = function (id, scientificName) {
+
     const $option = $(`#${id}`);
     const name = $option.text();
     const bark = $option.data("bark");
@@ -214,16 +213,6 @@ memorTreeMatch.displayImages = function (id, scientificName) {
     const barkURL = $option.data("barkUrl");
     const leafURL = $option.data("leafUrl");
 
-
-    $("#bark img")
-        .prop("src", `./assets/${bark}`)
-        .prop("alt", `${name} Bark | ${scientificName} | Photo by ${barkCredit} on Flickr [ https://www.flickr.com/photos/${barkURL} ] Modifications from original made for website image container.`);
-    $("#bark figcaption").html(`${name} Bark<span class="photoAttribution">Photo by <a href="https://www.flickr.com/photos/${barkURL}">${barkCredit}</a></span>`);
-    $("#leaf img")
-        .prop("src", `./assets/${leaf}`)
-        .prop("alt", `${name} Leaves | ${scientificName} | Photo by ${leafCredit} on Flickr [ https://www.flickr.com/photos/${leafURL} ] Modifications from original made for website image container.`);
-    $("#leaf figcaption").html(`${name} Leaves<span class="photoAttribution">Photo by <a href="https://www.flickr.com/photos/${leafURL}">${leafCredit}</a></span>`);
-};
 
 // * * * * DISPLAY PLANT DATA ON TREEFORMATION PAGE
 memorTreeMatch.displayData = function (obj) {
@@ -237,22 +226,7 @@ memorTreeMatch.displayData = function (obj) {
     const seedPeriodEnd = obj.main_species.fruit_or_seed.seed_period_end;
     const matureHeight = obj.main_species.specifications.mature_height.ft;
 
-    $("#scientificName").html(scientificName);
-    $("#familyCommonName").html(familyCommonName);
-    $("#nativeStatus").html(nativeStatus);
-    $("#foliageColor").html(foliageColor);
-    $("#flowerColor").html(flowerColor);
-    $("#bloomPeriod").html(bloomPeriod);
-    $("#seedPeriod").html(seedPeriodBegin === seedPeriodEnd ? seedPeriodBegin : `${seedPeriodBegin} to ${seedPeriodEnd}`);
-    $("#matureHeight").html(`${matureHeight} feet`);
-};
 
-// * * * * ACTUALIZE TREEFORMATION SELECTION
-memorTreeMatch.selectTree = function () {
-    $(".info select").change(function () {
-        const id = $(".info option:selected").prop("id");
-
-        memorTreeMatch.getPlant(id).then(function (result) {
             const scientificName = result.scientific_name;
 
             memorTreeMatch.displayImages(id, scientificName);

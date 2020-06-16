@@ -285,7 +285,7 @@ a:hover, a:active, a:focus {
   text-decoration: underline;
 }
 
-p, h1, h2 {
+p, figure, h1, h2, h3 {
   margin: 0;
 }
 
@@ -341,7 +341,7 @@ body > * {
 header, main, .info {
   background: -webkit-gradient(linear, left top, left bottom, from(#d7F0Fd), to(#12e072));
   background: linear-gradient(to bottom, #d7F0Fd, #12e072);
-  padding: 3vw;
+  padding: calc(min(3vw, 36px));
 }
 
 header {
@@ -499,61 +499,47 @@ h2.complete span {
           appearance: none;
 }
 
-section.treeformation .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-}
-
-article.treeformationBlock {
-  width: 100%;
-  margin: 1%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+.treeformationBlock {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40% 60%;
+      grid-template-columns: 40% 60%;
+  gap: calc(min(2vw, 24px));
+  margin-top: calc(min(3vw, 36px));
 }
 
 .leftSide {
-  width: calc(30% - 2%);
-  margin: 1%;
-}
-
-.rightSide {
-  width: calc(70% - 2%);
-  margin: 1%;
-}
-
-.leftSide figure {
-  width: 100%;
-  padding: 2%;
-  margin: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: calc(min(2vw, 24px));
 }
 
 .leftSide figcaption {
-  width: 100%;
   font-size: 2rem;
   text-align: center;
   font-weight: bold;
+  margin-top: 10px;
 }
 
-span.photoAttribution {
+.photoAttribution {
   display: block;
   font-weight: normal;
+}
+
+.rightSide h3 {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.rightSide h3:last-of-type {
+  margin-bottom: 0;
+}
+
+.rightSide span::after {
+  content: "\A";
+  white-space: pre;
 }
 
 footer {
