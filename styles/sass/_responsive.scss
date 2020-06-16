@@ -1,4 +1,5 @@
 // * * * * LANDING PAGE
+
 @media (max-width: 850px){
     h1{
         text-align: center;
@@ -22,36 +23,12 @@
 }
 
 @media (max-width: 650px){
-    
-
     .headerImage img{
         width: 100%;
     }
 }
 
 // * * * * CARD GAME
-// @media (min-width: 1200px) and (max-aspect-ratio: 25/12) {
-//     width: calc((min(100vw, 1200px) - 20vw) / 8);
-//     height: calc((min(100vw, 1200px) - 20vw) / 6);
-// }
-
-// @media (min-aspect-ratio: 2/1) and (max-width: 1200px) {
-//     .card {
-//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
-//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
-//         width: calc((100vh - 10vw) / 4);
-//         height: calc((100vh - 10vw) / 3);
-//     }
-// }
-
-// @media (min-width: 1200px) and (min-aspect-ratio: 25/12) {
-//     .card {
-//         width: calc((100vh - 10vw) / 4);
-//         height: calc((100vh - 10vw) / 3);
-//         // width: calc((min(100vw, 1200px) - 20vw) / 8);
-//         // height: calc((min(100vw, 1200px) - 20vw) / 6);
-//     }
-// }
 
 @media (max-aspect-ratio: 2/1) {
     .card {
@@ -93,5 +70,13 @@
     .card {
         width: calc((min(100vw, 1200px) - 12vw) / 4);
         height: calc((min(100vw, 1200px) - 12vw) / 3);
+    }
+}
+
+// * * * * TREEFORMATION PAGE
+
+@media (max-width: 650px) {
+    .treeformationBlock {
+        grid-template-columns: 1fr;
     }
 }

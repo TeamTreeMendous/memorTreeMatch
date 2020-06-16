@@ -3,7 +3,8 @@ $bodyFont: 'Indie Flower', cursive;
 
 body{
     font-family: $bodyFont;
-    @include fontSize(clamp(2rem, 3vw, 3rem));
+    font-size: clamp(2rem, 3vw, 3rem);
+    // @include fontSize(clamp(2rem, 3vw, 3rem));
 }
 
 button{
@@ -27,16 +28,23 @@ h1, h2, footer p{
 }
 
 h1{
-    @include fontSize(clamp(6rem, 9vw, 8rem));
+    font-size: clamp(6rem, 9vw, 8rem);
+    // @include fontSize(clamp(6rem, 9vw, 8rem));
     line-height: clamp(6.5rem, 10vw, 10rem);
 }
 
 h2{
-    @include fontSize(clamp(2rem, 4vw, 4rem));
+    font-size: clamp(2rem, 4vw, 4rem);
+    // @include fontSize(clamp(2rem, 4vw, 4rem));
     line-height: clamp(2.5rem, 4.5vw, 4.5rem);
 }
 
+h3{
+    font-size: clamp(2rem, 3vw, 3rem);
+}
+
 footer p{
-    @include fontSize(clamp(1rem, 2vw, 3rem));
+    font-size: clamp(1rem, 2vw, 3rem);
+    // @include fontSize(clamp(1rem, 2vw, 3rem));
     
 }
