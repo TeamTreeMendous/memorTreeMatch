@@ -53,16 +53,6 @@ header{
     flex-flow: row wrap;
 }
 
-main{
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    justify-items: center;
-    align-items: center;
-    gap: calc(min(2vw, 24px));
-    height: 100vh;
-    padding: calc(min(3vw, 36px));
-}
-
 // * * * * HEADER STYLES
 h1, .introBlock{
     z-index: 10;
@@ -99,9 +89,9 @@ h1 span{
     display: block;
 }
 
-button.start{
+button.start, .options button{
     width: 100%;
-    padding: 2%;
+    padding: 4% 2% 2% 2%;
     margin: 5% 0;
 }
 
@@ -115,7 +105,18 @@ button.start{
     width: 50%;
 }
 
-// * * * * CARDS
+// * * * * CARD PAGE
+main{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: calc(min(2vw, 24px));
+    height: 100vh;
+    padding: calc(min(3vw, 36px));
+    position: relative;
+}
+
 .card{
     width: calc(min(((1200px - 240px) / 8), ((100vh - 120px) / 4)));
     height: calc(min(((1200px - 240px) / 6), ((100vh - 120px) / 3)));
@@ -140,29 +141,36 @@ button.start{
     background-size: cover;
 }
 
-.cardFront{
-    transform: rotateY(180deg);
-    background: url(../assets/paperBirchBark.jpg) no-repeat;
-    background-size: cover;
-    // * * * * ^^ ADD FRONT IMAGE WITH JS ^^
+// * * * * END GAME MODAL
+// .endGame{
+//     width: 100vh;
+//     height: 100vw;
+//     background-color: $fadedGreen;
+// }
+
+.options{
+    padding: 5%;
+    background: $green;
+    border-radius: 10px;
+    border: 10px solid transparent;
+    width: 50%;
+    position: absolute;
 }
 
-.card:hover .cardBack{
-    transform: rotateY(-180deg);
+h2.complete{
+    text-align: center;
+}
 
-    &:active, :focus{
-       transform: rotateY(-180deg); 
-    }
-  }
+h2.complete span{
+    display: block;
+}
 
-  .card:hover .cardFront{
-    transform: rotateY(0);
+.options button{
+    font-size: 2rem;
+    margin: 2% 0;
+}
 
-    &:active, :focus{
-      transform: rotateY(0);  
-    }
-  }
-
+// * * * * TREEFORMATION PAGE
 .info{
     min-height: calc(100vh - 60px);
 
