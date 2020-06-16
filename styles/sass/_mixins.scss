@@ -1,7 +1,7 @@
-@mixin fontSize($chosenSize){
-    font-size: $chosenSize;
-    line-height: #{$chosenSize} + 2px;
-}
+// @mixin fontSize($chosenSize){
+//     font-size: $chosenSize;
+//     line-height: #{$chosenSize} + 2px;
+// }
 
 @mixin flexy($dis, $flexFlow, $justify, $center){
     display: $dis;

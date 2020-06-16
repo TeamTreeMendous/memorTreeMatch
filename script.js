@@ -258,7 +258,6 @@ memorTreeMatch.selectTree = function() {
         const id = $(".info option:selected").prop("id");
 
         memorTreeMatch.getPlant(id).then(function(result) {
-
             const scientificName = result.scientific_name;
 
             memorTreeMatch.displayImages(id, scientificName);
