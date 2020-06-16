@@ -274,7 +274,7 @@ body {
 }
 
 button {
-  font-family: "Indie Flower", cursive;
+  font-family: "Luckiest Guy", cursive;
 }
 
 a {
@@ -289,18 +289,25 @@ p, figure, h1, h2, h3 {
   margin: 0;
 }
 
+h1, h2, footer p {
+  font-family: "Luckiest Guy", cursive;
+}
+
 h1 {
   font-size: clamp(6rem, 9vw, 8rem);
   line-height: clamp(6rem, 9vw, 8rem) + 2px;
-  font-family: "Luckiest Guy", cursive;
   line-height: clamp(6.5rem, 10vw, 10rem);
 }
 
 h2 {
   font-size: clamp(2rem, 4vw, 4rem);
   line-height: clamp(2rem, 4vw, 4rem) + 2px;
-  font-family: "Luckiest Guy", cursive;
   line-height: clamp(2.5rem, 4.5vw, 4.5rem);
+}
+
+footer p {
+  font-size: clamp(1rem, 2vw, 3rem);
+  line-height: clamp(1rem, 2vw, 3rem) + 2px;
 }
 
 button {
@@ -354,20 +361,6 @@ header {
           flex-flow: row wrap;
 }
 
-main {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[8];
-      grid-template-columns: repeat(8, 1fr);
-  justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: calc(min(2vw, 24px));
-  height: 100vh;
-  padding: calc(min(3vw, 36px));
-}
-
 h1, .introBlock {
   z-index: 10;
   position: relative;
@@ -407,9 +400,9 @@ h1 span {
   display: block;
 }
 
-button.start {
+button.start, .options button {
   width: 100%;
-  padding: 2%;
+  padding: 4% 2% 2% 2%;
   margin: 5% 0;
 }
 
@@ -421,6 +414,21 @@ button.start {
 
 .headerImage img {
   width: 50%;
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[8];
+      grid-template-columns: repeat(8, 1fr);
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: calc(min(2vw, 24px));
+  height: 100vh;
+  padding: calc(min(3vw, 36px));
+  position: relative;
 }
 
 .card {
@@ -450,31 +458,26 @@ button.start {
   background-size: cover;
 }
 
-.cardFront {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-  background: url(../assets/paperBirchBark.jpg) no-repeat;
-  background-size: cover;
+.options {
+  padding: 5%;
+  background: #12e072;
+  border-radius: 10px;
+  border: 10px solid transparent;
+  width: 50%;
+  position: absolute;
 }
 
-.card:hover .cardBack {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+h2.complete {
+  text-align: center;
 }
 
-.card:hover .cardBack:active, .card:hover .cardBack :focus {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+h2.complete span {
+  display: block;
 }
 
-.card:hover .cardFront {
-  -webkit-transform: rotateY(0);
-          transform: rotateY(0);
-}
-
-.card:hover .cardFront:active, .card:hover .cardFront :focus {
-  -webkit-transform: rotateY(0);
-          transform: rotateY(0);
+.options button {
+  font-size: 2rem;
+  margin: 2% 0;
 }
 
 .info {

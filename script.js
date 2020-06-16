@@ -105,7 +105,7 @@ memorTreeMatch.cardDeck = [
 
 // * * * *  LANDING PAGE/BUTTON OPTIONS
 // * * * * WHEN FIRST BUTTON IS CLICKED IT GOES TO THE GAME PAGE
-memorTreeMatch.begin = function () { 
+memorTreeMatch.begin = function () {
     $('.start').click(function () {
         $('html,body').animate({
             scrollTop: $("main").offset().top
@@ -122,7 +122,7 @@ memorTreeMatch.begin = function () {
     });
 
     // * * * * ADD OTHER TRANSITION BUTTONS HERE
-}; 
+};
 
 // * * * *  START GAME - NEW GAME ON LOAD, CHOICE IS USER CARD PICKS, COUNTER FOR MATCHING PAIRS
 memorTreeMatch.newGame = [];
@@ -131,24 +131,24 @@ memorTreeMatch.choice2 = '';
 memorTreeMatch.pairCount = 0;
 
 // * * * *  SHUFFLE DECK - RANDOMIZE ORDER OF CARDS
-    // * * * * https://bost.ocks.org/mike/shuffle/
-    function shuffle(array) {
-        var m = array.length, t, i;
+// * * * * https://bost.ocks.org/mike/shuffle/
+function shuffle(array) {
+    var m = array.length, t, i;
 
-        // While there remain elements to shuffle…
-        while (m) {
+    // While there remain elements to shuffle…
+    while (m) {
 
-            // Pick a remaining element…
-            i = Math.floor(Math.random() * m--);
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
 
-            // And swap it with the current element.
-            t = array[m];
-            array[m] = array[i];
-            array[i] = t;
-        }
-
-        return array;
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
     }
+
+    return array;
+}
 // console.log(deck);
 
 memorTreeMatch.shuffle = function (deck) {
@@ -173,23 +173,23 @@ memorTreeMatch.shuffle = function (deck) {
 // }
 
 // * * * *  CARD TABLE - LAY OUT THE CARD WITH BACKS FACING USER
-memorTreeMatch.cardTable = function() {
+memorTreeMatch.cardTable = function () {
     // memorTreeMatch.shuffle.forEach( function(treeObject) {
     //     const treeCard = $('<button>').addClass('cardDeck');
     //     $('.gameBoard').append(treeCard);
     //     console.log(treeObject);
 
-        let shuffledDeck = memorTreeMatch.shuffle(memorTreeMatch.cardDeck);
-        for (let i = 0; i < shuffledDeck.length; i++) {
-            let cardTemplate = `
+    let shuffledDeck = memorTreeMatch.shuffle(memorTreeMatch.cardDeck);
+    for (let i = 0; i < shuffledDeck.length; i++) {
+        let cardTemplate = `
             <button class="card" cardPairId = '${shuffledDeck[i].id}'></button>`;
-            $('.gameBoard').append(cardTemplate);
-        }
-// });
+        $('.gameBoard').append(cardTemplate);
+    }
+    // });
 };
 
 // * * * * API PROMISE
-memorTreeMatch.getPlant = function(id) {
+memorTreeMatch.getPlant = function (id) {
     return $.ajax({
         url: "http://proxy.hackeryou.com",
         method: "GET",
@@ -203,8 +203,7 @@ memorTreeMatch.getPlant = function(id) {
     });
 };
 
-// * * * * DISPLAY PLANT IMAGES
-memorTreeMatch.displayImages = function(id, scientificName) {
+
     const $option = $(`#${id}`);
     const name = $option.text();
     const bark = $option.data("bark");
@@ -215,18 +214,8 @@ memorTreeMatch.displayImages = function(id, scientificName) {
     const leafURL = $option.data("leafUrl");
 
 
-    $("#bark img")
-        .prop("src", `./assets/${bark}`)
-        .prop("alt", `${name} Bark | ${scientificName} | Photo by ${barkCredit} on Flickr [ https://www.flickr.com/photos/${barkURL} ] Modifications from original made for website image container.`);
-    $("#bark figcaption").html(`${name} Bark<span class="photoAttribution">Photo by <a href="https://www.flickr.com/photos/${barkURL}">${barkCredit}</a></span>`);
-    $("#leaf img")
-        .prop("src", `./assets/${leaf}`)
-        .prop("alt", `${name} Leaves | ${scientificName} | Photo by ${leafCredit} on Flickr [ https://www.flickr.com/photos/${leafURL} ] Modifications from original made for website image container.`);
-    $("#leaf figcaption").html(`${name} Leaves<span class="photoAttribution">Photo by <a href="https://www.flickr.com/photos/${leafURL}">${leafCredit}</a></span>`);
-};
-
 // * * * * DISPLAY PLANT DATA ON TREEFORMATION PAGE
-memorTreeMatch.displayData = function(obj) {
+memorTreeMatch.displayData = function (obj) {
     const scientificName = obj.scientific_name;
     const familyCommonName = obj.family_common_name;
     const nativeStatus = obj.native_status;
@@ -237,22 +226,7 @@ memorTreeMatch.displayData = function(obj) {
     const seedPeriodEnd = obj.main_species.fruit_or_seed.seed_period_end;
     const matureHeight = obj.main_species.specifications.mature_height.ft;
 
-    $("#scientificName").html(scientificName);
-    $("#familyCommonName").html(familyCommonName);
-    $("#nativeStatus").html(nativeStatus);
-    $("#foliageColor").html(foliageColor);
-    $("#flowerColor").html(flowerColor);
-    $("#bloomPeriod").html(bloomPeriod);
-    $("#seedPeriod").html(seedPeriodBegin === seedPeriodEnd ? seedPeriodBegin : `${seedPeriodBegin} to ${seedPeriodEnd}`);
-    $("#matureHeight").html(`${matureHeight} feet`);
-};
 
-// * * * * ACTUALIZE TREEFORMATION SELECTION
-memorTreeMatch.selectTree = function() {
-    $(".info select").change(function() {
-        const id = $(".info option:selected").prop("id");
-        
-        memorTreeMatch.getPlant(id).then(function(result) {
             const scientificName = result.scientific_name;
 
             memorTreeMatch.displayImages(id, scientificName);

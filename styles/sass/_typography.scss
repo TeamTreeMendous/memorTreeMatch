@@ -7,7 +7,7 @@ body{
 }
 
 button{
-    font-family: $bodyFont;
+    font-family: $titleFont;
 }
 
 a{
@@ -22,14 +22,21 @@ p, figure, h1, h2, h3 {
     margin: 0;
 }
 
+h1, h2, footer p{
+    font-family: $titleFont;
+}
+
 h1{
     @include fontSize(clamp(6rem, 9vw, 8rem));
-    font-family: $titleFont;
     line-height: clamp(6.5rem, 10vw, 10rem);
 }
 
 h2{
     @include fontSize(clamp(2rem, 4vw, 4rem));
-    font-family: $titleFont;
     line-height: clamp(2.5rem, 4.5vw, 4.5rem);
+}
+
+footer p{
+    @include fontSize(clamp(1rem, 2vw, 3rem));
+    
 }
