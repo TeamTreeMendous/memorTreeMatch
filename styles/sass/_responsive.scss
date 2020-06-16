@@ -1,29 +1,29 @@
 // * * * * LANDING PAGE
 
-@media (max-width: 850px){
-    h1{
+@media (max-width: 850px) {
+    h1 {
         text-align: center;
     }
 
-    .intro{
+    .intro {
         width: 100%;
     }
 
-    .intro p{
-        background: $fadedBlue;
+    .intro p {
+        background: $modalBackground;
         border-radius: 5px;
         border: 2px solid transparent;
         line-height: 30px;
     }
 
-    .headerImage img{
+    .headerImage img {
         width: 70%;
         margin: 0 auto;
     }
 }
 
-@media (max-width: 650px){
-    .headerImage img{
+@media (max-width: 650px) {
+    .headerImage img {
         width: 100%;
     }
 }
@@ -70,6 +70,13 @@
     .card {
         width: calc((min(100vw, 1200px) - 12vw) / 4);
         height: calc((min(100vw, 1200px) - 12vw) / 3);
+    }
+}
+
+@media (max-width: 500px) {
+    .options {
+        width: 70%;
+        left: 15%;
     }
 }
 
