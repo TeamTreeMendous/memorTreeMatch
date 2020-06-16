@@ -1,20 +1,19 @@
 $titleFont: 'Luckiest Guy', cursive;
 $bodyFont: 'Indie Flower', cursive;
 
-body{
+body {
     font-family: $bodyFont;
     font-size: clamp(2rem, 3vw, 3rem);
-    // @include fontSize(clamp(2rem, 3vw, 3rem));
 }
 
-button{
+button {
     font-family: $titleFont;
 }
 
-a{
+a {
     text-shadow: 2px 2px orange;
     
-    &:hover, &:active, &:focus{
+    &:hover, &:active, &:focus {
         text-decoration: underline;
     }
 }
@@ -23,28 +22,24 @@ p, figure, h1, h2, h3 {
     margin: 0;
 }
 
-h1, h2, footer p{
+h1, h2, footer p {
     font-family: $titleFont;
 }
 
-h1{
+h1 {
     font-size: clamp(6rem, 9vw, 8rem);
-    // @include fontSize(clamp(6rem, 9vw, 8rem));
     line-height: clamp(6.5rem, 10vw, 10rem);
 }
 
-h2{
+h2 {
     font-size: clamp(2rem, 4vw, 4rem);
-    // @include fontSize(clamp(2rem, 4vw, 4rem));
     line-height: clamp(2.5rem, 4.5vw, 4.5rem);
 }
 
-h3{
+h3 {
     font-size: clamp(2rem, 3vw, 3rem);
 }
 
-footer p{
+footer p {
     font-size: clamp(1rem, 2vw, 3rem);
-    // @include fontSize(clamp(1rem, 2vw, 3rem));
-    
 }

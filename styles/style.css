@@ -416,6 +416,10 @@ button.start, .options button {
   width: 50%;
 }
 
+.gameWrapper {
+  position: relative;
+}
+
 main {
   display: -ms-grid;
   display: grid;
@@ -458,13 +462,81 @@ main {
   background-size: cover;
 }
 
+.cardFront img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+  border-radius: 5px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
+.inside {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: .4s ease-in-out;
+  transition: .4s ease-in-out;
+}
+
+.picked, .matched {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.matched {
+  -webkit-animation: shadowPulse 1s;
+          animation: shadowPulse 1s;
+  -webkit-animation-iteration-count: 3;
+          animation-iteration-count: 3;
+}
+
+.front {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.back {
+  -webkit-transform: rotateX(0);
+          transform: rotateX(0);
+}
+
+@-webkit-keyframes shadowPulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes shadowPulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+  }
+}
+
 .options {
+  display: none;
   padding: 5%;
   background: #12e072;
   border-radius: 10px;
   border: 10px solid transparent;
   width: 50%;
   position: absolute;
+  z-index: 20;
+  top: 100px;
+  left: 25%;
 }
 
 h2.complete {
@@ -481,7 +553,7 @@ h2.complete span {
 }
 
 .info {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 5vw);
 }
 
 .info h2 {
@@ -502,8 +574,8 @@ h2.complete span {
 .treeformationBlock {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 50% 50%;
-      grid-template-columns: 50% 50%;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   gap: calc(min(2vw, 24px));
   margin-top: calc(min(3vw, 36px));
 }
@@ -553,7 +625,7 @@ footer {
   color: white;
   text-align: center;
   padding: 15px;
-  height: 60px;
+  height: 5vw;
 }
 
 @media (max-width: 850px) {
@@ -621,6 +693,13 @@ footer {
   .card {
     width: calc((min(100vw, 1200px) - 12vw) / 4);
     height: calc((min(100vw, 1200px) - 12vw) / 3);
+  }
+}
+
+@media (max-width: 500px) {
+  .options {
+    width: 70%;
+    left: 15%;
   }
 }
 

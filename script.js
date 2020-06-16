@@ -3,108 +3,8 @@ const memorTreeMatch = {
     apiKey: "ejdBSVpoT3pSZnltT2ZieVZ4VEtOZz09",
 };
 
-// * * * *  ARRAY OF CARDS
-memorTreeMatch.cardDeck = [
-    {
-        id: 01,
-        tree: 'Eastern Hemlock'
-    },
-    {
-        id: 01,
-        tree: 'Eastern Hemlock'
-    },
-    {
-        id: 02,
-        tree: 'Red Oak'
-    },
-    {
-        id: 02,
-        tree: 'Red Oak'
-    },
-    {
-        id: 03,
-        tree: 'Black Oak'
-    },
-    {
-        id: 03,
-        tree: 'Black Oak'
-    },
-    {
-        id: 04,
-        tree: 'Red Maple'
-    },
-    {
-        id: 04,
-        tree: 'Red Maple'
-    },
-    {
-        id: 05,
-        tree: 'Eastern White Pine'
-    },
-    {
-        id: 05,
-        tree: 'Eastern White Pine'
-    },
-    {
-        id: 06,
-        tree: 'White Oak'
-    },
-    {
-        id: 06,
-        tree: 'White Oak'
-    },
-    {
-        id: 07,
-        tree: 'White Cedar'
-    },
-    {
-        id: 07,
-        tree: 'White Cedar'
-    },
-    {
-        id: 08,
-        tree: 'White Birch'
-    },
-    {
-        id: 08,
-        tree: 'White Birch'
-    },
-    {
-        id: 09,
-        tree: 'Black Cherry'
-    },
-    {
-        id: 09,
-        tree: 'Black Cherry'
-    },
-    {
-        id: 10,
-        tree: 'Yellow Birch'
-    },
-    {
-        id: 10,
-        tree: 'Yellow Birch'
-    },
-    {
-        id: 11,
-        tree: 'Willow'
-    },
-    {
-        id: 11,
-        tree: 'Willow'
-    },
-    {
-        id: 12,
-        tree: 'American Beech'
-    },
-    {
-        id: 12,
-        tree: 'American Beech'
-    }
-];
-
+// * * * * BUTTONS
 memorTreeMatch.buttons = function() {
-    // * * * * PUT THE OTHER BUTTONS HERE
     $('.start').on('click', function () {
         $('html, .game').animate({
             scrollTop: $('.game').offset().top
@@ -114,13 +14,11 @@ memorTreeMatch.buttons = function() {
     // * * * * .OPTIONS BUTTONS
     $('.restartGame').on('click', function (event) {
         event.preventDefault();
-        location.reload(true);
-        //It reloads to landing page, make it reload to just .game
-    });
+        // location.reload(true);
+        $("main").load(".game");
 
-    $('.barkGame').on('click', function () {
-        //Didnt make this version yet
-        console.log('Hello i was clicked :P');
+        return false;
+        //It reloads to landing page, make it reload to just .game
     });
 
     $('.learnTrees').on('click', function () {
@@ -130,69 +28,183 @@ memorTreeMatch.buttons = function() {
         }, 'slow');
     });
 };
-// * * * *  START GAME - NEW GAME ON LOAD, CHOICE IS USER CARD PICKS, COUNTER FOR MATCHING PAIRS
-memorTreeMatch.newGame = [];
-memorTreeMatch.choice1 = '';
-memorTreeMatch.choice2 = '';
-memorTreeMatch.pairCount = 0;
 
-// * * * *  SHUFFLE DECK - RANDOMIZE ORDER OF CARDS
-// * * * * https://bost.ocks.org/mike/shuffle/
-// function shuffle(array) {
-//     var m = array.length, t, i;
+// * * * * THE CARD GAME USING CODE BY https://codepen.io/riclab/pen/rzyVWO 
+(global => {
+    //It’s an Immediately-Invoked Function Expression, or IIFE for short. It executes immediately after it’s created. One of the famous JavaScript design patterns, it is the heart and soul of the modern day Module pattern. As the name suggests it executes immediately after it is created. This pattern creates an isolated or private scope of execution.
+    
+    let cardGame = {
 
-//     // While there remain elements to shuffle…
-//     while (m) {
+        // * * * *  INIT
+        init: function (cards) {
+            this.$game = $('.game');
+            this.$modal = $('.options');
+            this.$restartButton = $('.restartGame');
+            this.cardsArray = $.merge(cards, cards);
+            this.shuffleCards(this.cardsArray);
+            this.setup();
+            this.binding();
+        },
 
-//         // Pick a remaining element…
-//         i = Math.floor(Math.random() * m--);
+        shuffleCards: function (cardsArray) {
+            this.$cards = $(this.shuffle(this.cardsArray));
+        },
 
-//         // And swap it with the current element.
-//         t = array[m];
-//         array[m] = array[i];
-//         array[i] = t;
-//     }
+        setup: function () {
+            this.html = this.buildHTML();
+            this.$game.html(this.html);
+            this.$memorTreeCards = $('.card');
+            this.paused = false;
+            this.guess = null;
+        },
 
-//     return array;
-// }
-// console.log(deck);
+        binding: function () {
+            this.$memorTreeCards.on('click', this.cardClicked);
+            this.$restartButton.on("click", $.proxy(this.reset, this));
+        },
 
-// memorTreeMatch.shuffle = function (deck) {
-//     for (let i = deck.length - 1; i > 0; i--) {
-//         const swapIndex = Math.floor(Math.random() * (i + 1));
-//         const currentCard = deck[i];
-//         const cardToSwap = deck[swapIndex];
-//         deck[i] = cardToSwap;
-//         deck[swapIndex] = currentCard;
-//     }
-//     return deck;
-// };
+        cardClicked: function () {
+            let _ = cardGame;
+            let $card = $(this);
+            if (!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")) {
+                $card.find(".inside").addClass("picked");
+                if (!_.guess) {
+                    _.guess = $(this).attr("data-id");
+                } else if (_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")) {
+                    $(".picked").addClass("matched");
+                    _.guess = null;
+                } else {
+                    _.guess = null;
+                    _.paused = true;
+                    setTimeout(function () {
+                        $(".picked").removeClass("picked");
+                        cardGame.paused = false;
+                    }, 600);
+                }
+                if ($(".matched").length == $(".card").length) {
+                    _.win();
+                }
+            }
+        },
 
-// * * * * DONT UNDERSTAND WHY THIS DOESNT WORK
-// memorTreeMatch.shuffleDeck = function (arr) {
-//     const deck = arr;
-//     for (let i = deck.length - 1; i > 0; i--) {
-//         let j = Math.floor(Math.random() * (i + 1));
-//         [deck[i], deck[j]] = [deck[j], deck[i]]
-//     }
-//     return deck;
-// }
+        win: function () {
+            this.paused = true;
+            setTimeout(function () {
+                cardGame.showModal();
+            });
+        },
 
-// * * * *  CARD TABLE - LAY OUT THE CARD WITH BACKS FACING USER
-// memorTreeMatch.cardTable = function () {
-//     // memorTreeMatch.shuffle.forEach( function(treeObject) {
-//     //     const treeCard = $('<button>').addClass('cardDeck');
-//     //     $('.gameBoard').append(treeCard);
-//     //     console.log(treeObject);
+        showModal: function () {
+            this.$modal.show();
+        },
 
-//     let shuffledDeck = memorTreeMatch.shuffle(memorTreeMatch.cardDeck);
-//     for (let i = 0; i < shuffledDeck.length; i++) {
-//         let cardTemplate = `
-//             <button class="card" cardPairId = '${shuffledDeck[i].id}'></button>`;
-//         $('.gameBoard').append(cardTemplate);
-//     }
-//     // });
-// };
+        hideModal: function () {
+            this.$modal.hide();
+        },
+
+        reset: function () {
+            location.reload(true);
+        },
+
+        // Fisher--Yates Algorithm -- https://bost.ocks.org/mike/shuffle/
+        shuffle: function (array) {
+            let counter = array.length, temp, index;
+            // While there are elements in the array
+            while (counter > 0) {
+                // Pick a random index
+                index = Math.floor(Math.random() * counter);
+                // Decrease counter by 1
+                counter--;
+                // And swap the last element with it
+                temp = array[counter];
+                array[counter] = array[index];
+                array[index] = temp;
+            }
+            return array;
+        },
+
+        buildHTML: function () {
+            let complete = '';
+            this.$cards.each(function (k, v) {
+                complete += '<div class="card" data-id="' + v.id + '"><div class="inside">\
+                <div class="cardFront"><img src="'+ v.img + '"\
+                alt="'+ v.name + '" /></div>\
+                <div class="cardBack"></div></div>\
+                </div>';
+            });
+            return complete;
+        }
+
+    }; // * * * * END OF THE GAME OBJECT
+
+    // * * * *  ARRAY OF CARDS
+    let cards = [
+        {
+            id: 01,
+            tree: "American Beech Leaves",
+            img: "./assets/americanBeechLeaves.jpg"
+        },
+        {
+            id: 02,
+            tree: "Black Cherry Leaves",
+            img: "./assets/blackCherryLeaves.jpg"
+        },
+        {
+            id: 03,
+            tree: "Black Oak Leaves",
+            img: "./assets/blackOakLeaves.jpg"
+        },
+        {
+            id: 04,
+            tree: "Eastern Hemlock Leaves",
+            img: "./assets/easternHemlockLeaves.jpg"
+        },
+        {
+            id: 05,
+            tree: "Eastern White Pine Leaves",
+            img: "./assets/easternWhitePineLeaves.jpg"
+        },
+        {
+            id: 06,
+            tree: "Paper Birch Leaves",
+            img: "./assets/paperBirchLeaves.jpg"
+        },
+        {
+            id: 07,
+            tree: "Red Maple Leaves",
+            img: "./assets/redMapleLeaves.jpg"
+        },
+        {
+            id: 08,
+            tree: "Red Oak Leaves",
+            img: "./assets/redOakLeaves.jpg"
+        },
+        {
+            id: 09,
+            tree: "White Cedar Leaves",
+            img: "./assets/whiteCedarLeaves.jpg"
+        },
+        {
+            id: 10,
+            tree: "White Oak Leaves",
+            img: "./assets/whiteOakLeaves.jpg"
+        },
+        {
+            id: 11,
+            tree: "White Willow Leaves",
+            img: "./assets/whiteWillowLeaves.jpg"
+        },
+        {
+            id: 12,
+            tree: "Yellow Birch Leaves",
+            img: "./assets/yellowBirchLeaves.jpg"
+        },
+    ];
+
+    cardGame.init(cards);
+
+})(); // END OF ENTIRE GAME
+
 
 // * * * * API PROMISE
 memorTreeMatch.getPlant = function(id) {
@@ -266,20 +278,9 @@ memorTreeMatch.selectTree = function() {
     });
 };
 
-
-
-// * * * *  COMPARE THE TWO CARD CHOICES - IF A MATCH, DISAPPEAR, MAYBE A LITTLE MESSAGE LIKE “UN BE - LEAF - ABLE” OR “TAKE A BOUGH” AND IF IT’S WRONG “DON’T FEEL STUMPED” OR “DON’T GIVE UP, THERE’S NO TIME FORREST” (LIKE ON THE FIRST QUESTION AND THE SECOND LAST AND LAST ONES)
-// * * * *  FLIP CARD ACTION
-// * * * *  COMPLETE GAME - LOAD OTHER GAMING OPTIONS OR TREE - FORMATION(TREE INFORMATION) PAGE OF INFO
-// * * * *  [OTHER GAME VERSIONS]
-// * * * *  END OF GAME - CHOOSE TO PLAY AGAIN, PLAY ANOTHER VERSION, OR CHOOSE TO SEE TREE INFO PAGE(SLIDE UP PAGE)
-// * * * *  TREE - FORMATION PAGE - DISPLAYS INFO ON CARDS IN BROCHURE / PDF MANNER ON IT’S OWN PAGE
-
 // * * * * INIT PIECES
 memorTreeMatch.init = function () {
     memorTreeMatch.buttons();
-    // memorTreeMatch.shuffle(memorTreeMatch.cardDeck);
-    // memorTreeMatch.cardTable();
     memorTreeMatch.selectTree();
 
     $(".info select").change();
@@ -288,5 +289,4 @@ memorTreeMatch.init = function () {
 // * * * * DOCUMENT READY
 $(() => {
     memorTreeMatch.init();
-    AOS.init();
 }); // * * * * END OF DOCUMENT READY
